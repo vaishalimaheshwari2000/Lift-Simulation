@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>lift</title>
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+  <h2 id="lift_simulate_heading">Lift Simulation</h2>
+  <br />
+
+  <div class="form-simulate box">
+    <div class="glass"></div>
+
+    <form id="frm">
+      <label>Number of Lifts</label><br />
+      <input class="lifts" id="lift" type="number" value="5" name="lift"  /><br /><br />
+      <label>Number of Floors</label><br />
+      <input class="floors" id="floorcount" type="number" value="5" name="floor"  /><br /><br />
+      <input type="button" value="Generate" class="btn simulation" id="btn" />
+    </form>
+  </div>
+  <div id="lift_space">
+    
+    <h3 id="floor_spaces_heading">Floors and Lifts Existed here</h3>
+  
+      <div id="main_section">
+
+        <div id="lift_section"></div>
+      </div>
+    </div>
+  
+  <script src="./js/main.js"></script>
+</body>
+
+</html>
