@@ -41,12 +41,11 @@ button.addEventListener("click", () => {
 
   for (let j = 0; j < liftCount.value; j++) {
     doorleft = document.createElement("div"); // door left element for a left lift door
-    doorleft.setAttribute("id", "left");
+    doorleft.setAttribute("class", "left");
     doorright = document.createElement("div"); // door right element for a right lift door
-    doorright.setAttribute("id", "right");
+    doorright.setAttribute("class", "right");
     lift_background = document.createElement("div"); // background for the lift, when the door will open
-    lift_background.setAttribute("id", "lift_box");
-    lift_background.setAttribute("class", "lift_bx");
+    lift_background.setAttribute("class", "lift_box");
     lift_background.setAttribute("data-status", "free");
     lift_background.appendChild(doorleft);
     lift_background.appendChild(doorright);
@@ -55,15 +54,20 @@ button.addEventListener("click", () => {
     last.style.display = "flex";
     floor.insertBefore(lift_background, last);
     lift_background.setAttribute("data-status", "free");
+    lift_background.setAttribute("data-current", `${j}`);
     liftSection.appendChild(lift_background);
     lifts.push(lift_background);
+    
+
   }
+
+  // console.log();
 
   const floorList = document.querySelectorAll(".floor");
   const reverseArray = Array.from(floorList).reverse();
-  const rightDoor = document.querySelectorAll("#right");
-  const leftDoor = document.querySelectorAll("#left");
-  const liftBox = document.querySelector("#lift_box");
+  const rightDoor = document.querySelectorAll(".right");
+  const leftDoor = document.querySelectorAll(".left");
+  const liftBox = document.querySelector(".lift_box");
   const button = document.querySelector('button');
   reverseArray.forEach((reverseArray, index) => {
     reverseArray.addEventListener("click", (event) => {
@@ -71,59 +75,67 @@ button.addEventListener("click", () => {
     });
   });
 
+
+
   function handleLiftMovement(index) {
     for (let i = 0; i < lifts.length; i++) {
+      
       if (lifts[i].dataset.status === "free") {
-        liftsMovement(index, i);
+        liftsMovement(index);
 
         break;
-      } else if (liftBox.dataset.status === "busy") {
-        doorsMovement(i);
+      } 
+         
+         else if (lift[i].dataset.status === "busy") {
+          doorsMovement(i);
       }
     }
   }
+  let item = 8;
 
-  function liftsMovement(index, liftIndex) {
-    setTimeout(() => {
-      const liftBox = document.querySelector("#lift_box");
-
+  function liftsMovement(liftPosition) {
+  
+      
+      
       let freeLift = lifts.find((item) => {
         return item.dataset.status === "free";
-      });
+      }) ;
     
+     
+        let distance = Math.abs(Number(freeLift.dataset.current) - Number(liftPosition));
+        console.log(distance);
 
+        
       freeLift.style.position = "relative";
-      freeLift.style.transition = "bottom 2s";
-      freeLift.style.bottom = `${( 150.8 * (index))}px`;
+      freeLift.style.transition = `bottom  ${distance * 2}s`;
+      freeLift.style.bottom = `${( 150.8 * (liftPosition))}px`;
       freeLift.style.marginBottom = "0px";
-    }, 2000 * (index));
     
-     doorsMovement(liftIndex);
+     doorsMovement(freeLift);   
   }
-
-  function doorsMovement(liftIndex) {
-    setTimeout(() => {
-      
-           document.querySelector('#lift_box').childNodes[0].style.transition = "width 2.5s";
-           document.querySelector('#lift_box').childNodes[1].style.transition = "width 2.5s";
-
-          document.querySelector('#lift_box').childNodes[0].style.width = "0px";
-          document.querySelector('#lift_box').childNodes[1].style.width = "0px";
+   
+  function doorsMovement(freeLift) {
+    
+           freeLift.childNodes[0].style .transition = "width 2.5s";
+           freeLift.childNodes[1].style.transition = "width 2.5s";
+           freeLift.childNodes[0].style.width = "0px";
+           freeLift.childNodes[1].style.width = "0px";
 
      
-    }, 2500 + 2700);
-    setTimeout(() => {
-      
-          document.querySelector('#lift_box').childNodes[0].style.transition = "width 2.5s";
-          document.querySelector('#lift_box').childNodes[1].style.transition = "width 2.5s";
-         
-          document.querySelector('#lift_box').childNodes[0].style.width = "22px";
-          document.querySelector('#lift_box').childNodes[1].style.width = "22px";
 
-          document.querySelector('#lift_box').setAttribute("data-status", "free");
+      
+          freeLift.childNodes[0].style.transition = "width 5s";
+          freeLift.childNodes[1].style.transition = "width 5s";
+          freeLift.childNodes[0].style.width = "22px";
+          freeLift.childNodes[1].style.width = "22px";
+
+  
+         freeLift.setAttribute("data-status", "free");
+       
+      }
+   
      
-    }, 5000 + 2700);
-  }
+      
 
   const liftSpaces = document.querySelector("#lift_space");
   liftSpaces.style.display = "block";
