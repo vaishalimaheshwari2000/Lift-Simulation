@@ -61,7 +61,7 @@ button.addEventListener("click", () => {
 
   }
 
-  // console.log();
+
 
   const floorList = document.querySelectorAll(".floor");
   const reverseArray = Array.from(floorList).reverse();
