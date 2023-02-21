@@ -52,10 +52,11 @@ button.addEventListener("click", () => {
     lift_background.appendChild(doorright);
     lift_background.style.display = "flex";
     const last = floor.childNodes[floor.childNodes.length - 1];
-    floor.insertBefore(lift_background, last);
+    floor.insertBefore(liftSection, last);
     lift_background.setAttribute("data-status", "free");
     lift_background.setAttribute("data-current", 0);
     liftSection.appendChild(lift_background);
+
     lifts.push(lift_background);
 
 
@@ -84,29 +85,31 @@ button.addEventListener("click", () => {
     });
 
     liftsMovement(freeLift,index);
-    freeLift.dataset.current = index;
+    freeLift.setAttribute("data-current", index);
+    
   }
  
 
   function liftsMovement(freeLift,floorIndex) {
-    freeLift.dataset.status = "busy";
     
-
-
+    
+    
     distance = Math.abs(Number(freeLift.dataset.current) - Number(floorIndex));
     console.log(distance);
+    freeLift.setAttribute("data-status", "busy");
 
 
-    freeLift.style.position = "relative";
+    // freeLift.style.position = "relative";
+    freeLift.style.bottom = `${(150 * (floorIndex))}px`;
     freeLift.style.transition = `bottom  ${distance * 2}s`;
-    freeLift.style.bottom = `${(150.8 * (floorIndex))}px`;
-    freeLift.style.marginBottom = "0px";
-   
+    // freeLift.style.marginBottom = "0px";
+    console.log( `bottom  ${distance * 2}s`);
+    
     doorsMovement(freeLift);
 }
 
   function doorsMovement(freeLift){
-    console.log(`${distance*2000}`);
+    // console.log(`${distance*2000}`);
     
    setTimeout(() => {
  
