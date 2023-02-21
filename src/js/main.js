@@ -117,7 +117,7 @@ button.addEventListener("click", () => {
     freeLift.childNodes[1].style.transition = "width 2.5s";
     freeLift.childNodes[0].style.width = "0px";
     freeLift.childNodes[1].style.width = "0px";
-    
+    freeLift.style.boxShadow = '0vw 0vw 0.1vw 0.1vw #00bcd4';
     setTimeout(() => {
 
       freeLift.childNodes[0].style.transition = "width 5s";
@@ -125,8 +125,9 @@ button.addEventListener("click", () => {
       freeLift.childNodes[0].style.width = "22px";
       freeLift.childNodes[1].style.width = "22px";
       freeLift.dataset.status = "free";
+      freeLift.style.boxShadow = 'none';
     }, 2500);
-   
+    
   }, `${distance * 2000}`);
  
 
