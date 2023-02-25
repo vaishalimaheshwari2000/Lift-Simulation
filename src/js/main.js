@@ -93,14 +93,16 @@ button.addEventListener("click", () => {
   function liftsMovement(freeLift,floorIndex) {
     
     
+    let currentPosition = Number(freeLift.getAttribute('data-current'));
+    console.log(currentPosition);
     
-    distance = Math.abs(Number(freeLift.dataset.current) - Number(floorIndex));
-    console.log(distance);
+    distance = Math.abs(currentPosition - Number(floorIndex));
+    // console.log(distance);
     freeLift.setAttribute("data-status", "busy");
 
 
     // freeLift.style.position = "relative";
-    freeLift.style.bottom = `${(150 * (floorIndex))}px`;
+    freeLift.style.bottom = `${(150.8 * (floorIndex))}px`;
     freeLift.style.transition = `bottom  ${distance * 2}s`;
     // freeLift.style.marginBottom = "0px";
     console.log( `bottom  ${distance * 2}s`);
@@ -120,8 +122,8 @@ button.addEventListener("click", () => {
     freeLift.style.boxShadow = '0vw 0vw 0.1vw 0.1vw #00bcd4';
     setTimeout(() => {
 
-      freeLift.childNodes[0].style.transition = "width 5s";
-      freeLift.childNodes[1].style.transition = "width 5s";
+      freeLift.childNodes[0].style.transition = "width 2.5s";
+      freeLift.childNodes[1].style.transition = "width 2.5s";
       freeLift.childNodes[0].style.width = "22px";
       freeLift.childNodes[1].style.width = "22px";
       freeLift.dataset.status = "free";
