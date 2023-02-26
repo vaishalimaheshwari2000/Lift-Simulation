@@ -38,8 +38,9 @@ button.addEventListener("click", () => {
   let doorleft = "",
     doorright = "",
     lift_background = "",
-    lifts = [], distance = '';
-   initialValue =0 ;
+    lifts = [],
+    distance = "";
+  initialValue = 0;
   for (let j = 0; j < liftCount.value; j++) {
     doorleft = document.createElement("div"); // door left element for a left lift door
     doorleft.setAttribute("class", "left");
@@ -58,94 +59,71 @@ button.addEventListener("click", () => {
     liftSection.appendChild(lift_background);
 
     lifts.push(lift_background);
-
-
   }
-
-
 
   const floorList = document.querySelectorAll(".floor");
   const reverseArray = Array.from(floorList).reverse();
   const rightDoor = document.querySelectorAll(".right");
   const leftDoor = document.querySelectorAll(".left");
   const liftBox = document.querySelector(".lift_box");
-  const button = document.querySelector('button');
+  const button = document.querySelector("button");
   reverseArray.forEach((reverseArray, index) => {
     reverseArray.addEventListener("click", (event) => {
       handleLiftMovement(index);
     });
   });
 
-
-
   function handleLiftMovement(index) {
-   
- let freeLift = lifts.find((item) => {
+    let freeLift = lifts.find((item) => {
       return item.dataset.status === "free";
     });
 
-    liftsMovement(freeLift,index);
+    liftsMovement(freeLift, index);
     freeLift.setAttribute("data-current", index);
-    
   }
- 
 
-  function liftsMovement(freeLift,floorIndex) {
-    
-    
-    let currentPosition = Number(freeLift.getAttribute('data-current'));
+  function liftsMovement(freeLift, floorIndex) {
+    let currentPosition = Number(freeLift.getAttribute("data-current"));
     console.log(currentPosition);
-    
+
     distance = Math.abs(currentPosition - Number(floorIndex));
     // console.log(distance);
     freeLift.setAttribute("data-status", "busy");
 
-
     // freeLift.style.position = "relative";
-    freeLift.style.bottom = `${(150.8 * (floorIndex))}px`;
+    freeLift.style.bottom = `${150.8 * floorIndex}px`;
     freeLift.style.transition = `bottom  ${distance * 2}s`;
     // freeLift.style.marginBottom = "0px";
-    console.log( `bottom  ${distance * 2}s`);
-    
+    console.log(`bottom  ${distance * 2}s`);
+
     doorsMovement(freeLift);
-}
-
-  function doorsMovement(freeLift){
-    // console.log(`${distance*2000}`);
-    
-   setTimeout(() => {
- 
-    freeLift.childNodes[0].style.transition = "width 2.5s";
-    freeLift.childNodes[1].style.transition = "width 2.5s";
-    freeLift.childNodes[0].style.width = "0px";
-    freeLift.childNodes[1].style.width = "0px";
-    freeLift.style.boxShadow = '0vw 0vw 0.1vw 0.1vw #00bcd4';
-    setTimeout(() => {
-
-      freeLift.childNodes[0].style.transition = "width 2.5s";
-      freeLift.childNodes[1].style.transition = "width 2.5s";
-      freeLift.childNodes[0].style.width = "22px";
-      freeLift.childNodes[1].style.width = "22px";
-      freeLift.dataset.status = "free";
-      freeLift.style.boxShadow = 'none';
-    }, 2500);
-    
-  }, `${distance * 2000}`);
- 
-
-
-  // setTimeout(() => {
-
-  // }, 2500);
-   
-
-
-  // freeLift.dataset.status = "free";
-
   }
 
+  function doorsMovement(freeLift) {
+    // console.log(`${distance*2000}`);
 
+    setTimeout(() => {
+      leftDoor.style.transition = "width 2.5s";
+      rightDoor.style.transition = "width 2.5s";
+      leftDoor.style.width = "0px";
+      rightDoor.style.width = "0px";
+      Door.style.boxShadow = "0vw 0vw 0.1vw 0.1vw #00bcd4";
+      setTimeout(() => {
+        leftDoor.style.transition = "width 2.5s";
+        rightDoor.style.transition = "width 2.5s";
+        leftDoor.style.width = "22px";
+        rightDoor.style.width = "22px";
+        freeLift.dataset.status = "free";
+        freeLift.style.boxShadow = "none";
+      }, 2500);
+    }, `${distance * 2000}`);
 
+    // setTimeout(() => {
+
+    // }, 2500);
+
+    // freeLift.dataset.status = "free";
+  }
 
   const liftSpaces = document.querySelector("#lift_space");
   liftSpaces.style.display = "block";
