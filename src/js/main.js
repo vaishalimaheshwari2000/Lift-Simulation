@@ -84,7 +84,7 @@ button.addEventListener("click", () => {
 
   function liftsMovement(freeLift, floorIndex) {
     let currentPosition = Number(freeLift.getAttribute("data-current"));
-    console.log(currentPosition);
+    // console.log(currentPosition);
 
     distance = Math.abs(currentPosition - Number(floorIndex));
     // console.log(distance);
@@ -94,7 +94,7 @@ button.addEventListener("click", () => {
     freeLift.style.bottom = `${150.8 * floorIndex}px`;
     freeLift.style.transition = `bottom  ${distance * 2}s`;
     // freeLift.style.marginBottom = "0px";
-    console.log(`bottom  ${distance * 2}s`);
+    // console.log(`bottom  ${distance * 2}s`);
 
     doorsMovement(freeLift);
   }
@@ -103,16 +103,22 @@ button.addEventListener("click", () => {
     // console.log(`${distance*2000}`);
 
     setTimeout(() => {
-      leftDoor.style.transition = "width 2.5s";
-      rightDoor.style.transition = "width 2.5s";
-      leftDoor.style.width = "0px";
-      rightDoor.style.width = "0px";
-      Door.style.boxShadow = "0vw 0vw 0.1vw 0.1vw #00bcd4";
+      console.log(freeLift.childNodes[0]);
+      console.log(freeLift.childNodes[1]);
+      
+      freeLift.childNodes[0].style.width = "0px";
+       freeLift.childNodes[1].style.width = "0px";
+       freeLift.childNodes[0].style.transition = "width 2.5s";
+       freeLift.childNodes[1].style.transition = "width 2.5s";
+
+      freeLift.style.boxShadow = "0vw 0vw 0.1vw 0.1vw #00bcd4";
       setTimeout(() => {
-        leftDoor.style.transition = "width 2.5s";
-        rightDoor.style.transition = "width 2.5s";
-        leftDoor.style.width = "22px";
-        rightDoor.style.width = "22px";
+
+         freeLift.childNodes[0].style.width = "22px";
+         freeLift.childNodes[1].style.width = "22px";
+         freeLift.childNodes[0].style.transition = "width 2.5s";
+         freeLift.childNodes[1].style.transition = "width 2.5s";
+    
         freeLift.dataset.status = "free";
         freeLift.style.boxShadow = "none";
       }, 2500);
