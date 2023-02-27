@@ -83,12 +83,13 @@ button.addEventListener("click", () => {
   }
 
   function liftsMovement(freeLift, floorIndex) {
-    let currentPosition = Number(freeLift.getAttribute("data-current"));
+    freeLift.setAttribute("data-status", "busy");
+    let currentPosition = Number(freeLift.dataset.current);
+
     // console.log(currentPosition);
 
     distance = Math.abs(currentPosition - Number(floorIndex));
     // console.log(distance);
-    freeLift.setAttribute("data-status", "busy");
 
     // freeLift.style.position = "relative";
     freeLift.style.bottom = `${150.8 * floorIndex}px`;
@@ -103,32 +104,25 @@ button.addEventListener("click", () => {
     // console.log(`${distance*2000}`);
 
     setTimeout(() => {
-      console.log(freeLift.childNodes[0]);
-      console.log(freeLift.childNodes[1]);
-      
       freeLift.childNodes[0].style.width = "0px";
-       freeLift.childNodes[1].style.width = "0px";
-       freeLift.childNodes[0].style.transition = "width 2.5s";
-       freeLift.childNodes[1].style.transition = "width 2.5s";
+      freeLift.childNodes[1].style.width = "0px";
+      freeLift.childNodes[0].style.transition = "width 2.5s";
+      freeLift.childNodes[1].style.transition = "width 2.5s";
 
       freeLift.style.boxShadow = "0vw 0vw 0.1vw 0.1vw #00bcd4";
       setTimeout(() => {
 
-         freeLift.childNodes[0].style.width = "22px";
-         freeLift.childNodes[1].style.width = "22px";
-         freeLift.childNodes[0].style.transition = "width 2.5s";
-         freeLift.childNodes[1].style.transition = "width 2.5s";
-    
+        freeLift.childNodes[0].style.width = "22px";
+        freeLift.childNodes[1].style.width = "22px";
+        freeLift.childNodes[0].style.transition = "width 2.5s";
+        freeLift.childNodes[1].style.transition = "width 2.5s";
+
         freeLift.dataset.status = "free";
         freeLift.style.boxShadow = "none";
-      }, 2500);
+      },2500);
     }, `${distance * 2000}`);
 
-    // setTimeout(() => {
 
-    // }, 2500);
-
-    // freeLift.dataset.status = "free";
   }
 
   const liftSpaces = document.querySelector("#lift_space");
