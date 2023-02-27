@@ -106,6 +106,8 @@ button.addEventListener("click", () => {
     setTimeout(() => {
       freeLift.childNodes[0].style.width = "0px";
       freeLift.childNodes[1].style.width = "0px";
+      freeLift.style.transition = "none";
+
       freeLift.childNodes[0].style.transition = "width 2.5s";
       freeLift.childNodes[1].style.transition = "width 2.5s";
 
@@ -116,7 +118,7 @@ button.addEventListener("click", () => {
         freeLift.childNodes[1].style.width = "22px";
         freeLift.childNodes[0].style.transition = "width 2.5s";
         freeLift.childNodes[1].style.transition = "width 2.5s";
-
+        freeLift.style.transition = "none";
         freeLift.dataset.status = "free";
         freeLift.style.boxShadow = "none";
       },2500);
