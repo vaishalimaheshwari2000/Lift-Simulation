@@ -1,10 +1,19 @@
 const button = document.querySelector("#btn");
 const liftSpaces = document.querySelector("#lift_space");
+const backButton = document.querySelector("#regenerate_btn");
+const box = document.querySelector(".form-simulate");
+
+backButton.addEventListener("click", () => {
+  liftSpaces.style.display = "none";
+  box.style.display = "block";
+
+
+});
 // console.log(liftSpaces);
 liftSpaces.style.display = "none";
 button.addEventListener("click", () => {
   const liftSection = document.querySelector("#lift_section"); // main box element for a whole  lift space which helps to bring all lift in a row
-  const box = document.querySelector(".form-simulate");
+    const box = document.querySelector(".form-simulate");
   const floorCount = document.querySelector("#floorcount");
   const liftCount = document.querySelector("#lift");
   const lift_Space = document.querySelector("#main_section"); // arrow img  include up and down arrow buttons
@@ -12,6 +21,12 @@ button.addEventListener("click", () => {
 
   box.style.display = "none";
   let floor = "";
+ let errorSection = document.querySelector("#error_section");
+
+if(floorCount.value<2 || liftCount.value<1){
+  errorLifthandleAvailability();
+} 
+  
   for (let i = 0; i < floorCount.value; i++) {
     floor = document.createElement("div");
 
@@ -111,20 +126,42 @@ button.addEventListener("click", () => {
       freeLift.childNodes[0].style.transition = "width 2.5s";
       freeLift.childNodes[1].style.transition = "width 2.5s";
 
-      freeLift.style.boxShadow = "0vw 0vw 0.1vw 0.1vw #00bcd4";
+      // freeLift.style.boxShadow = "0vw 0vw 0.1vw 0.1vw #00bcd4";
       setTimeout(() => {
 
-        freeLift.childNodes[0].style.width = "22px";
-        freeLift.childNodes[1].style.width = "22px";
+        freeLift.childNodes[0].style.width = "1.5rem";
+        freeLift.childNodes[1].style.width = "1.5rem";
         freeLift.childNodes[0].style.transition = "width 2.5s";
         freeLift.childNodes[1].style.transition = "width 2.5s";
         freeLift.style.transition = "none";
         freeLift.dataset.status = "free";
-        freeLift.style.boxShadow = "none";
+        // freeLift.style.boxShadow = "none";
       },2500);
     }, `${distance * 2000}`);
 
 
+  }
+
+  function errorLifthandleAvailability(e)  {
+  
+  if(floorCount.value<2){
+
+    // e.preventDefault();
+    errorSection.innerHTML+= `<h2>Please enter at least 2 floors</h2>`;
+    return;
+    
+
+  }
+  if(liftCount.value<1){
+
+    // e.preventDefault();
+    errorSection.innerHTML+= `<h2>Please enter at least 1 lift</h2>`;
+    return;
+    
+ 
+  }
+  
+  
   }
 
   const liftSpaces = document.querySelector("#lift_space");
