@@ -234,12 +234,11 @@ button:active{
     transform: translateY(4px);
 }
 
+.revert_back{
+display: flex;
+align-items: center;
+     justify-content: center;
 
-input #regenerate_btn{
-
- display: flex;
- align-items: center;
- justify-content: center;
 
 
 }

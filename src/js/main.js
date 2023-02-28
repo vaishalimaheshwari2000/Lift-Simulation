@@ -5,7 +5,7 @@ const box = document.querySelector(".form-simulate");
 
 backButton.addEventListener("click", () => {
   liftSpaces.style.display = "none";
-  box.style.display = "block";
+box.style.display = "block";
 
 
 });
