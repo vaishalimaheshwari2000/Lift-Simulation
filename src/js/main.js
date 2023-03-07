@@ -3,18 +3,6 @@ let liftSpaces = document.querySelector("#lift_space");
 let backButton = document.querySelector("#regenerate_btn");
 let box = document.querySelector(".form-simulate");
 
-// backButton.addEventListener("click", () => {
-
-//   let child = liftSpaces.firstElementChild;
-//   while (child) {
-//     child.remove();
-//     child = liftSpaces.firstElementChild;
-
-//   }
-//   box.style.display = "block";
-
-
-// });
 
 liftSpaces.style.display = "none";
 button.addEventListener("click", () => {
