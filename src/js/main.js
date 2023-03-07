@@ -18,11 +18,14 @@ let box = document.querySelector(".form-simulate");
 
 liftSpaces.style.display = "none";
 button.addEventListener("click", () => {
-  let liftSection = document.querySelector("#lift_section");
+  let liftSection = document.createElement("div");
+  liftSection.setAttribute("id", "lift_section");
+
   let box = document.querySelector(".form-simulate");
   let floorCount = document.querySelector("#floorcount");
   let liftCount = document.querySelector("#lift");
   let lift_Space = document.querySelector("#main_section");
+  lift_Space.appendChild(liftSection);
   let lift = document.querySelector("#lift_space"); // for lift space
   box.style.display = "none";
   let floor;
@@ -49,8 +52,8 @@ button.addEventListener("click", () => {
     let textnew = document.createTextNode("Floor No. " + num);
     pTag.appendChild(textnew);
     floor.appendChild(pTag);
-    console.log(lift_Space);
     lift_Space.appendChild(floor);
+    console.log(lift_Space);
   }
   let doorleft = "",
     doorright = "",
@@ -130,14 +133,14 @@ button.addEventListener("click", () => {
 
   backButton.addEventListener("click", () => {
 
-    let child = liftSpaces.firstElementChild;
+    let child = lift_Space.firstElementChild;
     while (child) {
       child.remove();
-      child = liftSpaces.firstElementChild;
+      child = lift_Space.firstElementChild;
   
     }
     box.style.display = "block";
-  
+    liftSpaces.style.display = "none";
   
   });
   let liftSpaces = document.querySelector("#lift_space");
