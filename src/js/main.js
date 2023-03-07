@@ -23,7 +23,6 @@ button.addEventListener("click", () => {
   for (let i = 0; i < floorCount.value; i++) {
    floor = document.createElement("div");
     floor.className = "floor";
-    // lift_Space.appendChild(floor);
     if (i > 0 && i < floorCount.value - 1) {
       floor.innerHTML += `<button type="button" class ='upButton'>Up</button>`;
       floor.innerHTML += `<button type="button" class ='downButton'>Down</button>`;
@@ -34,7 +33,7 @@ button.addEventListener("click", () => {
     if (i == floorCount.value - 1) {
       floor.innerHTML += `<button type='button' class ='upButton'>Up</button>`;
     }
-    let pTag = document.createElement("p"); // para tag
+    let pTag = document.createElement("p"); 
     pTag.setAttribute("id", "floorCount");
     let num = floorCount.value - i; // number of floor counts
     let textnew = document.createTextNode("Floor No. " + num);
@@ -50,9 +49,9 @@ button.addEventListener("click", () => {
     distance = "";
   initialValue = 0;
   for (let j = 0; j < liftCount.value; j++) {
-    doorleft = document.createElement("div"); // door left element for a left lift door
+    doorleft = document.createElement("div"); 
     doorleft.setAttribute("class", "left");
-    doorright = document.createElement("div"); // door right element for a right lift door
+    doorright = document.createElement("div"); 
     doorright.setAttribute("class", "right");
     lift_background = document.createElement("div"); // background for the lift, when the door will open
     lift_background.setAttribute("class", "lift_box");
