@@ -160,8 +160,13 @@ button{
 }
 
 #lift_space {
+    /* top:10%; */
     width: 100%;
 
+}
+.existed h3{
+    position:relative;
+    top:100px;
 }
 
 #lift_space h2 {
@@ -237,8 +242,5 @@ button:active{
 .revert_back{
 display: flex;
 align-items: center;
-     justify-content: center;
-
-
-
+justify-content: center;
 }
