@@ -103,7 +103,7 @@ button.addEventListener("click", () => {
          flag = false;
          break;
        }
-      //  console.log('zayfvuksGW');
+   
       if(value > index && word==="free") {
           
         console.log(word);
