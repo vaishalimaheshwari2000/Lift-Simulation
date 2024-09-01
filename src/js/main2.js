@@ -88,47 +88,11 @@ button.addEventListener("click", () => {
       });
     });
     reverseDownButtonArray.map((button,index) => {
-      let flag = false ;
+      let flag = true ;
       button.addEventListener("click", () => {
-
-    for (let i = 0; i < lifts.length; i++) {     
-     
-        const value = lifts[i].getAttribute('data-current');
-      
-       const word = lifts[i].getAttribute('data-status');
-   
-        
-       if(index==value) {
-        // console.log(value);
-         flag = false;
-         break;
-       }
-      //  console.log('zayfvuksGW');
-      if(value > index && word==="free") {
-          
-        console.log(word);
-        console.log(value);
-        flag = true;
-        break;
-             
-
-       } 
-    
-    
-    }  
-
-
-
-
-
-
-
-      if(flag) {
-        console.log('check3');
-      handleLiftMovement(index+1); }  
-
-
-      });
+  
+      handleLiftMovement(index+1); 
+     });
   });
    
      
