@@ -250,7 +250,7 @@ btn.addEventListener("click", () => {
 
          
     //  enable this button
-       button.disabled = false;
+      button.disabled = false;
 
     }, `${(distance * 2000) + 2500}`);
 
